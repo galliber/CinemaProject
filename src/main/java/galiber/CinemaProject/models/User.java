@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "users")
 public class User implements UserDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
@@ -58,7 +58,7 @@ public class User implements UserDetails {
 			inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
 	private Set<Movie> favourites;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	@OneToMany
 	private Set<Reservation> reservations;
 
 	@Column
@@ -72,7 +72,7 @@ public class User implements UserDetails {
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "ole_id", referencedColumnName = "id"))
+			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles;
 
 	public User() {

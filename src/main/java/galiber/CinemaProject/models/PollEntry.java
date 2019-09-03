@@ -15,10 +15,7 @@ public class PollEntry {
 	@Column
 	private int votes;
 	
-	@ManyToMany
-	@JoinTable(name = "movie_poll_entry",
-			joinColumns = @JoinColumn(name = "pe_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
+	@ManyToOne
 	private Movie movie;
 	
 	

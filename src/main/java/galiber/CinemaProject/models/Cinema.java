@@ -1,6 +1,7 @@
 package galiber.CinemaProject.models;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -27,6 +28,16 @@ public class Cinema {
 	@ManyToOne
 	@JoinColumn(name="owner_id")
 	private User owner;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "cinma_movie",
+			joinColumns = @JoinColumn(name = "cinema_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
+	private Set<Movie> screenedMovies;
+	
+	@OneToMany
+	private Set<Hall> halls;
 	
 
 	public Cinema() {
