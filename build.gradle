@@ -1,3 +1,5 @@
+import jdk.internal.dynalink.linker.LinkerServices.Implementation
+
 plugins {
 	id 'org.springframework.boot' version '2.1.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -28,4 +30,19 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	
+	//OkHttp and GSON parser
+	implementation 'com.google.code.gson:gson:2.8.5'
+	implementation 'com.squareup.okhttp3:okhttp:4.1.0'
+	
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.0.pr1'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.10.0.pr1'
+	
+	
+	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.4.RELEASE'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
+	compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.1.7.RELEASE'
+	
+
 }

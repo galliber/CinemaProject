@@ -2,6 +2,7 @@ package galiber.CinemaProject.models;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -68,7 +69,7 @@ public class User implements UserDetails {
 	private LocalDateTime modified;
 
 	@Column
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -76,7 +77,12 @@ public class User implements UserDetails {
 	private Set<Role> roles;
 
 	public User() {
-		// TODO Auto-generated constructor stub
+		this.watchedMovies=new HashSet<Movie>();
+		this.favourites=new HashSet<Movie>();
+		this.reservations=new HashSet<Reservation>();
+		this.roles=new HashSet<Role>();
+		this.created=LocalDateTime.now();
+		this.modified=LocalDateTime.now();
 	}
 
 	public User(Long id,
@@ -137,7 +143,7 @@ public class User implements UserDetails {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -210,8 +216,7 @@ public class User implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.roles;
 	}
 
 	@Override
